@@ -1,0 +1,798 @@
+FORMAT: 1A
+
+# KdO API
+This API is design for the application KdO (development name)
+
+# Group Contribution Entity
+
+## Contributions [/api/extended/contributions]
+List of all contributions of a user
+
+### Get all contributions **Planned** [GET]
++ Response 200 (application/json)
+
+            [
+                {
+                    "id":1,
+                    "amount": 10.5,
+                    "createdAt":"2014-12-11T23:33:45.000Z",
+                    "updatedAt":"2014-12-11T23:33:45.000Z",
+                    "message": "some message",
+                    "item": {
+                        "id": 2,
+                        "name": "balloon",
+                        "userFor": {
+                            "id":2,
+                            "firstName":"sam",
+                            "lastName":"durand",
+                            "username":"sam"
+                        }
+                    }
+                },
+                {
+                    "id":2,
+                    "amount": 10.5,
+                    "createdAt":"2014-12-11T23:33:45.000Z",
+                    "updatedAt":"2014-12-11T23:33:45.000Z",
+                    "message": "some message",
+                    "item": {
+                        "id": 2,
+                        "name": "balloon",
+                        "userFor": {
+                            "id":2,
+                            "firstName":"sam",
+                            "lastName":"durand",
+                            "username":"sam"
+                        }
+                    }
+                }
+            ]
+            
+## Contribution [/api/extended/contributions/{contributionId}]
+Single Object
+
++ Parameters
+    + contributionId (required, integer, `1`) ... Numeric `id` of the contribution
+
+### Get Details of a contribution **Planned** [GET]
++ Response 200 (application/json)
+
+        {
+            "id":1,
+            "amount": 10.5,
+            "createdAt":"2014-12-11T23:33:45.000Z",
+            "updatedAt":"2014-12-11T23:33:45.000Z",
+            "message": "some message",
+            "contributor": {
+                "id":2,
+                "firstName":"sam",
+                "lastName":"durand",
+                "username":"sam"
+            },
+            "item": {
+                "id": 2,
+                "name": "balloon",
+                "userFor": {
+                    "id":2,
+                    "firstName":"sam",
+                    "lastName":"durand",
+                    "username":"sam"
+                }
+            }
+        }
+        
+### Update contribution **Planned** [PUT]
++ Request (application/x-www-form-urlencoded)
+
+        amount=10&message=happy to contribute
+        
++ Response 200 (application/json)
+
+        {
+            "id":1,
+            "amount": 10.5,
+            "createdAt":"2014-12-11T23:33:45.000Z",
+            "updatedAt":"2014-12-11T23:33:45.000Z",
+            "message": "some message",
+            "contributor": {
+                "id":2,
+                "firstName":"sam",
+                "lastName":"durand",
+                "username":"sam"
+            },
+            "item": {
+                "id": 2,
+                "name": "balloon"
+            }
+        }
+
+### Delete a contribution **Planned** [DELETE]
++ Response 204
+
+## Invitations to contribute [/api/extended/contributions/invitations/pending]
+List of all invitations to contribute pending for a user (not accepted yet)
+
+### Get all **Planned** [GET]
++ Response 200 (application/json)
+
+    + Headers
+
+            Access-Control-Allow-Origin: *
+
+    + Body
+    
+            [
+                {
+                    "id":1,
+                    "accepted":"false",
+                    "message":"I would like to invite you to the gift for nico",
+                    "createdAt":"2014-12-11T23:33:45.000Z",
+                    "updatedAt":"2014-12-11T23:33:45.000Z",
+                    "userSender": {
+                        "id":2,
+                        "firstName":"sam",
+                        "lastName":"durand",
+                        "username":"sam"
+                    },
+                    "userTarget": {
+                        "id":2,
+                        "firstName":"sam",
+                        "lastName":"durand",
+                        "username":"sam"
+                    },
+                    "item": {
+                        "id": 2,
+                        "name": "a big and huge balloon",
+                        "userFor": {
+                            "id":2,
+                            "firstName":"sam",
+                            "lastName":"durand",
+                            "username":"sam"
+                        }
+                    }
+                },
+                {
+                    "id":1,
+                    "accepted":"false",
+                    "message":"I would like to invite you to the gift for nico",
+                    "createdAt":"2014-12-11T23:33:45.000Z",
+                    "updatedAt":"2014-12-11T23:33:45.000Z",
+                    "userSender": {
+                        "id":2,
+                        "firstName":"sam",
+                        "lastName":"durand",
+                        "username":"sam"
+                    },
+                    "userTarget": {
+                        "id":2,
+                        "firstName":"sam",
+                        "lastName":"durand",
+                        "username":"sam"
+                    },
+                    "item": {
+                        "id": 2,
+                        "name": "a big balloon",
+                        "userFor": {
+                            "id":2,
+                            "firstName":"sam",
+                            "lastName":"durand",
+                            "username":"sam"
+                        }
+                    }
+                },
+                {
+                    "id":1,
+                    "accepted":"false",
+                    "message":"I would like to invite you to the gift for nico",
+                    "createdAt":"2014-12-11T23:33:45.000Z",
+                    "updatedAt":"2014-12-11T23:33:45.000Z",
+                    "userSender": {
+                        "id":2,
+                        "firstName":"sam",
+                        "lastName":"durand",
+                        "username":"sam"
+                    },
+                    "userTarget": {
+                        "id":2,
+                        "firstName":"sam",
+                        "lastName":"durand",
+                        "username":"sam"
+                    },
+                    "item": {
+                        "id": 2,
+                        "name": "a big balloon",
+                        "userFor": {
+                            "id":2,
+                            "firstName":"sam",
+                            "lastName":"durand",
+                            "username":"sam"
+                        }
+                    }
+                }
+            ]
+
+## Invitation to contribute [/api/extended/contributions/invitations/{invitationId}]
+Single Object
+
++ Parameters
+    + invitationId (required, integer, `1`) ... Numeric `id` of the invitation
+    
+### Get Details of an Invitation to contribute **Planned** [GET]
++ Response 200 (application/json)
+
+    + Headers
+
+            Access-Control-Allow-Origin: *
+
+    + Body
+    
+            {
+                "id":1,
+                "accepted":"false",
+                "message":"I would like to invite you to the gift for nico",
+                "createdAt":"2014-12-11T23:33:45.000Z",
+                "updatedAt":"2014-12-11T23:33:45.000Z",
+                "userTargetId":"1",
+                "userSender": {
+                    "id":2,
+                    "firstName":"sam",
+                    "lastName":"durand",
+                    "username":"sam"
+                },
+                "userTarget": {
+                    "id":2,
+                    "firstName":"sam",
+                    "lastName":"durand",
+                    "username":"sam"
+                },
+                "item": {
+                    "id": 2,
+                    "name": "a big balloon",
+                    "userFor": {
+                        "id":2,
+                        "firstName":"sam",
+                        "lastName":"durand",
+                        "username":"sam"
+                    }
+                }
+            }
+            
+### Delete an Invitation **Planned** [DELETE]
++ Response 204
+
+## Accept Invitation to contribute [/api/extended/contributions/invitations/{invitationId}/accept]
+Accepts an invitation. Implies the creation of a Contribution entities with amount of 0.
+
+### Accept Invitation **Planned** [POST]
++ Response 200
+
+    + Headers
+
+            Access-Control-Allow-Origin: *
+
+## Decline Invitation to contribute [/api/extended/contributions/invitations/{invitationId}/decline]
+Decline an invitation. For now simply delete the invitation, may change in the future.
+
+### Decline Invitation **Planned** [POST]
++ Response 200
+
+    + Headers
+
+            Access-Control-Allow-Origin: *
+    
+# Group ItemList Entity
+            
+## ItemLists [/api/extended/itemLists]
+List and creation
+
+### All ItemLists **Planned** [GET]
++ Response 200 (application/json)
+
+    + Headers
+
+            Access-Control-Allow-Origin: *
+            
+    + Body
+    
+            [
+                {
+                    "id":1,
+                    "eventType":"birthday",
+                    "name":"anniv nico",
+                    "createdAt":"2014-12-11T23:33:45.000Z",
+                    "updatedAt":"2014-12-11T23:33:45.000Z",
+                    "userId":1,
+                    "items":[
+                        {
+                            "id":1,
+                            "name":"ballon",
+                            "description":"un beau ballon",
+                            "price":"10.2",
+                            "priority":"normal",
+                            "status":"waiting",
+                            "contribution":"5",
+                            "active":true,
+                            "createdAt":"2014-12-11T23:33:45.000Z",
+                            "updatedAt":"2014-12-11T23:33:45.000Z",
+                            "itemListId":1,
+                            "userFor":{
+                                "id":2,
+                                "firstName":null,
+                                "lastName":null,
+                                "username":"nico"
+                            }
+                        },
+                        {
+                            "id":2,
+                            "name":"Livre",
+                            "description":"un bon livre",
+                            "price":20,
+                            "priority":"normal",
+                            "status":"paid",
+                            "contribution":20,
+                            "active":true,
+                            "createdAt":"2014-12-11T23:33:45.000Z",
+                            "updatedAt":"2014-12-11T23:33:45.000Z",
+                            "itemListId":1,
+                            "userFor":{
+                                "id":2,
+                                "firstName":null,
+                                "lastName":null,
+                                "username":"nico"
+                            }
+                        },
+                        {
+                            "id":3,
+                            "name":"Montre",
+                            "description":"Une belle montre",
+                            "price":"100",
+                            "priority":"normal",
+                            "status":"bought",
+                            "contribution":"100",
+                            "active":true,
+                            "createdAt":"2014-12-11T23:33:45.000Z",
+                            "updatedAt":"2014-12-11T23:33:45.000Z",
+                            "itemListId":1,
+                            "userFor":{
+                                "id":2,
+                                "firstName":null,
+                                "lastName":null,
+                                "username":"nico"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id":2,
+                    "eventType":"birthday",
+                    "name":"anniv nico",
+                    "createdAt":"2014-12-11T23:33:45.000Z",
+                    "updatedAt":"2014-12-11T23:33:45.000Z",
+                    "userId":1,
+                    "items":[
+                        {
+                            "id":5,
+                            "name":"ballon",
+                            "description":"un beau ballon",
+                            "price":"10.2",
+                            "priority":"normal",
+                            "status":"waiting",
+                            "contribution":"5",
+                            "active":true,
+                            "createdAt":"2014-12-11T23:33:45.000Z",
+                            "updatedAt":"2014-12-11T23:33:45.000Z",
+                            "itemListId":1,
+                            "userFor":{
+                                "id":2,
+                                "firstName":null,
+                                "lastName":null,
+                                "username":"nico"
+                            }
+                        },
+                        {
+                            "id":6,
+                            "name":"Livre",
+                            "description":"un bon livre",
+                            "price":20,
+                            "priority":"normal",
+                            "status":"paid",
+                            "contribution":20,
+                            "active":true,
+                            "createdAt":"2014-12-11T23:33:45.000Z",
+                            "updatedAt":"2014-12-11T23:33:45.000Z",
+                            "itemListId":1,
+                            "userFor":{
+                                "id":2,
+                                "firstName":null,
+                                "lastName":null,
+                                "username":"nico"
+                            }
+                        },
+                        {
+                            "id":7,
+                            "name":"Montre",
+                            "description":"Une belle montre",
+                            "price":"100",
+                            "priority":"normal",
+                            "status":"bought",
+                            "contribution":"100",
+                            "active":true,
+                            "createdAt":"2014-12-11T23:33:45.000Z",
+                            "updatedAt":"2014-12-11T23:33:45.000Z",
+                            "itemListId":1,
+                            "userFor":{
+                                "id":2,
+                                "firstName":null,
+                                "lastName":null,
+                                "username":"nico"
+                            }
+                        }
+                    ]
+                }
+            ]
+
+### Create an ItemList **Planned** [POST]
++ Request (application/x-www-form-urlencoded)
+
+        name=birthdayNico&evenType=birthday
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Access-Control-Allow-Origin: *
+
+    + Body
+    
+            {
+                "id": "100",
+                "name": "Anniv Nico",
+                "eventType": "birthday",
+                "creationDate": "1977-04-22T06:00:00Z",
+                "editionDate": "1977-04-22T06:00:00Z",
+                "userId": "1"
+            }
+
+## ItemList [/api/extended/itemLists/{itemListId}]
+Single object
+
++ Parameters
+    + itemListId (required, integer, `1`) ... Numeric `id` of the itemList
+
+### Get Details of an ItemList **Planned** [GET]
++ Response 200 (application/json)
+
+        {
+            "id":1,
+            "eventType":"birthday",
+            "name":"anniv nico",
+            "createdAt":"2014-12-11T23:33:45.000Z",
+            "updatedAt":"2014-12-11T23:33:45.000Z",
+            "userId":1,
+            "items":[
+                {
+                    "id":1,
+                    "name":"ballon",
+                    "description":"un beau ballon",
+                    "price":"10.2",
+                    "priority":"normal",
+                    "status":"waiting",
+                    "contribution":"5",
+                    "active":true,
+                    "createdAt":"2014-12-11T23:33:45.000Z",
+                    "updatedAt":"2014-12-11T23:33:45.000Z",
+                    "itemListId":1,
+                    "userFor":{
+                        "id":2,
+                        "firstName":null,
+                        "lastName":null,
+                        "username":"nico"
+                    }
+                },
+                {
+                    "id":2,
+                    "name":"Livre",
+                    "description":"un bon livre",
+                    "price":20,
+                    "priority":"normal",
+                    "status":"paid",
+                    "contribution":20,
+                    "active":true,
+                    "createdAt":"2014-12-11T23:33:45.000Z",
+                    "updatedAt":"2014-12-11T23:33:45.000Z",
+                    "itemListId":1,
+                    "userFor":{
+                        "id":2,
+                        "firstName":null,
+                        "lastName":null,
+                        "username":"nico"
+                    }
+                },
+                {
+                    "id":3,
+                    "name":"Montre",
+                    "description":"Une belle montre",
+                    "price":"100",
+                    "priority":"normal",
+                    "status":"bought",
+                    "contribution":"100",
+                    "active":true,
+                    "createdAt":"2014-12-11T23:33:45.000Z",
+                    "updatedAt":"2014-12-11T23:33:45.000Z",
+                    "itemListId":1,
+                    "userFor":{
+                        "id":2,
+                        "firstName":null,
+                        "lastName":null,
+                        "username":"nico"
+                    }
+                }
+            ]
+        }
+
+### Delete an ItemList **Planned** [DELETE]
++ Response 204
+
+### Modify an ItemList **Planned** [PUT]
++ Request (application/x-www-form-urlencoded)
+
++ Response 202 (application/json)
+    + Headers
+
+            Access-Control-Allow-Origin: *
+
+    + Body
+    
+            {
+                "id":1,
+                "eventType":"wedding",
+                "name":"marriage nico",
+                "createdAt":"2014-12-11T23:33:45.000Z",
+                "updatedAt":"2014-12-11T23:33:45.000Z",
+                "userId":1
+            }
+
+
+# Group Item Entity
+            
+## Items [/api/extended/items]
+List and creation
+
+### All Items **Not Implemented** [GET]
++ Response 501
+
+### Create an Item **Planned** [POST]
++ Request (application/x-www-form-urlencoded)
+
++ Response 201 (application/json) 
+
+        {
+            "id":2,
+            "name":"Livre",
+            "description":"un bon livre",
+            "price":20,
+            "priority":"normal",
+            "status":"waiting",
+            "contribution":"0",
+            "active":true,
+            "createdAt":"2014-12-11T23:33:45.000Z",
+            "updatedAt":"2014-12-11T23:33:45.000Z",
+            "itemListId":1
+        }
+
+## Item [/api/extended/items/{itemId}]
+Single object
+
++ Parameters
+    + itemId (required, integer, `1`) ... Numeric `id` of the item
+            
+### Get Details of an Item **Planned** [GET]
++ Response 200 (application/json)
+
+        {
+            "id":2,
+            "name":"Livre",
+            "description":"un bon livre",
+            "price":20,
+            "priority":"normal",
+            "status":"waiting",
+            "contribution":"0",
+            "active":true,
+            "createdAt":"2014-12-11T23:33:45.000Z",
+            "updatedAt":"2014-12-11T23:33:45.000Z",
+            "itemListId":1,
+            "recipient":{
+                "id":2,
+                "username":"nico"
+            },
+            "owner":{
+                "id":1,
+                "username":"sam"
+            },
+            "buyer":{
+                "id":3,
+                "username":"julien"
+            }
+        }
+
+### Delete an Item **Planned** [DELETE]
++ Response 204
+
+### Modify an Item **Planned** [PUT]
++ Request (application/x-www-form-urlencoded)
+
++ Response 200 (application/json)
+
+## Item contributions [/api/extended/items/{itemId}/contributions]
+Contributions for an Item (no Id for the contribution, no need to access the real object for the user)
+
++ Parameters
+    + itemId (required, integer, `1`) ... Numeric `id` of the item
+            
+### Get Contributions **Planned** [GET]
++ Response 200 (application/json)
+
+        [
+            {
+                "amount": "5",
+                "createdAt":"2014-12-10T19:56:17.000Z",
+                "user": {
+                    "id": "1",
+                    "userName": "sam"
+                }
+            },
+            {
+                "amount": "2",
+                "createdAt":"2014-12-10T19:56:17.000Z",
+                "user": {
+                    "id": "1",
+                    "userName": "julien"
+                }
+            },
+            {
+                "amount": "2",
+                "createdAt":"2014-12-10T19:56:17.000Z",
+                "user": {
+                    "id": "1",
+                    "userName": "julien"
+                }
+            },
+            {
+                "amount": "2",
+                "createdAt":"2014-12-10T19:56:17.000Z",
+                "user": {
+                    "id": "1",
+                    "userName": "julien"
+                }
+            },
+            {
+                "amount": "2",
+                "createdAt":"2014-12-10T19:56:17.000Z",
+                "user": {
+                    "id": "1",
+                    "userName": "julien"
+                }
+            },
+            {
+                "amount": "2",
+                "createdAt":"2014-12-10T19:56:17.000Z",
+                "user": {
+                    "id": "1",
+                    "userName": "julien"
+                }
+            },
+            {
+                "amount": "2",
+                "createdAt":"2014-12-10T19:56:17.000Z",
+                "user": {
+                    "id": "1",
+                    "userName": "julien"
+                }
+            },
+            {
+                "amount": "2",
+                "createdAt":"2014-12-10T19:56:17.000Z",
+                "user": {
+                    "id": "1",
+                    "userName": "julien"
+                }
+            },
+            {
+                "amount": "2",
+                "createdAt":"2014-12-10T19:56:17.000Z",
+                "user": {
+                    "id": "1",
+                    "userName": "julien"
+                }
+            },
+            {
+                "amount": "2",
+                "createdAt":"2014-12-10T19:56:17.000Z",
+                "user": {
+                    "id": "1",
+                    "userName": "julien"
+                }
+            }
+        ]
+        
+## Item comments [/api/extended/items/{itemId}/comments]
+Comments for an Item (no Id for the comment, no need to access the real object for the user)
+
++ Parameters
+    + itemId (required, integer, `1`) ... Numeric `id` of the item
+            
+### Get Comments **Planned** [GET]
++ Response 200 (application/json)
+
+        [
+            {
+                "message": "what a nice toy !",
+                "createdAt":"2014-12-10T19:56:17.000Z",
+                "user": {
+                    "id": "1",
+                    "userName": "sam"
+                }
+            },
+            {
+                "message": "what a pity, nobody wants that !",
+                "createdAt":"2014-12-10T19:56:17.000Z",
+                "user": {
+                    "id": "1",
+                    "userName": "julien"
+                }
+            }
+        ]
+        
+### Create Comment **Planned** [POST]
++ Request (application/x-www-form-urlencoded)
+
+        message=message of the comment
+        
++ Response 200 (application/json)
+
+        {
+            "id": "4",
+            "message": "message of the comment"
+        }
+
+# Group Item Life Cycle
+Contribute to pay an Item and buy it
+    
+## Contribute [/api/extended/items/{itemId}/contribute/{amount}]
+Contribute to pay the price of an Item.
+
++ Parameters
+    + itemId (required, integer, `1`) ... Numeric `id` of the item
+    + amount (required, decimal, `1`) ... Numeric `amount` contributed
+     
+### Update a contribution amount **Planned** [PUT]
++ Response 202 (application/json)
+
+    + Headers
+
+            Access-Control-Allow-Origin: *
+
+    + Body
+    
+            {
+                "id":2,
+                "name":"Livre",
+                "description":"un bon livre",
+                "price":20,
+                "priority":"normal",
+                "status":"paid",
+                "contribution":20,
+                "active":true,
+                "createdAt":"2014-12-11T23:33:45.000Z",
+                "updatedAt":"2014-12-11T23:33:45.000Z",
+                "itemListId":1
+            }
+
+## Buy [/api/extended/items/{itemId}/buy]
+A user assign an item buying to himself
+
++ Parameters
+    + itemId (required, integer, `1`) ... Numeric `id` of the item
+            
+### Buy an Item **Planned** [PUT]
++ Response 202 (application/json)
