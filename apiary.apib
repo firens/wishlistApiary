@@ -810,7 +810,7 @@ Contribute to pay the price of an Item.
                 "itemListId":1
             }
 
-## Buy [/api/extended/items/{itemId}/buy]
+## Buy [/api/extended/items/{itemId}/contribute/buy]
 A user assign an item buying to himself
 
 + Parameters
@@ -818,3 +818,23 @@ A user assign an item buying to himself
             
 ### Buy an Item **Planned** [PUT]
 + Response 202 (application/json)
+
+    + Headers
+
+            Access-Control-Allow-Origin: *
+
+    + Body
+    
+            {
+                "id":2,
+                "name":"Livre",
+                "description":"un bon livre",
+                "price":20,
+                "priority":"normal",
+                "status":"bought",
+                "contribution":20,
+                "active":true,
+                "createdAt":"2014-12-11T23:33:45.000Z",
+                "updatedAt":"2014-12-11T23:33:45.000Z",
+                "itemListId":1
+            }
