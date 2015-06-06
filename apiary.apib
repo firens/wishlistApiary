@@ -639,6 +639,38 @@ Single object
             "itemListId":1
         }
 
+## Item invitation [/api/extended/items/{itemId}/invitations]
+Invitation for an Item (no Id for the invitation, no need to access the real object for the user)
+
++ Parameters
+    + itemId (required, integer, `1`) ... Numeric `id` of the item
+            
+### Get Invitations **Planned** [GET]
++ Response 200 (application/json)
+
+        [
+            { 
+                id: null,
+                accepted: false,
+                message: null,
+                createdAt: '2015-06-06T09:06:59.000Z',
+                updatedAt: '2015-06-06T09:06:59.000Z',
+                userId: 96,
+                itemId: 107,
+                userSenderId: 1 
+            },
+            { 
+                id: null,
+                accepted: false,
+                message: null,
+                createdAt: '2015-06-06T09:06:59.000Z',
+                updatedAt: '2015-06-06T09:06:59.000Z',
+                userId: 96,
+                itemId: 107,
+                userSenderId: 1 
+            }
+        ]
+  
 ## Item contributions [/api/extended/items/{itemId}/contributions]
 Contributions for an Item (no Id for the contribution, no need to access the real object for the user)
 
@@ -730,7 +762,7 @@ Contributions for an Item (no Id for the contribution, no need to access the rea
                 }
             }
         ]
-        
+      
 ## Item comments [/api/extended/items/{itemId}/comments]
 Comments for an Item (no Id for the comment, no need to access the real object for the user)
 
