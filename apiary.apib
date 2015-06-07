@@ -650,26 +650,27 @@ Invitation for an Item (no Id for the invitation, no need to access the real obj
 
         [
             { 
-                id: null,
-                accepted: false,
-                message: null,
-                createdAt: '2015-06-06T09:06:59.000Z',
-                updatedAt: '2015-06-06T09:06:59.000Z',
-                userId: 96,
-                itemId: 107,
-                userSenderId: 1 
+                "id": "1",
+                "accepted": "false",
+                "message": "null",
+                "createdAt": "2015-06-06T09:06:59.000Z",
+                "user": {
+                    "id": "1",
+                    "username": "Me"
+                }
             },
             { 
-                id: null,
-                accepted: false,
-                message: null,
-                createdAt: '2015-06-06T09:06:59.000Z',
-                updatedAt: '2015-06-06T09:06:59.000Z',
-                userId: 96,
-                itemId: 107,
-                userSenderId: 1 
+                "id": "2",
+                "accepted": "false",
+                "message": "null",
+                "createdAt": "2015-06-06T09:06:59.000Z",
+                "user": {
+                    "id": "2",
+                    "username": "You"
+                }
             }
         ]
+        
   
 ## Item contributions [/api/extended/items/{itemId}/contributions]
 Contributions for an Item (no Id for the contribution, no need to access the real object for the user)
